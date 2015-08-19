@@ -1,0 +1,49 @@
+<?page title="User Search" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="userSearch" title="User Search" border="normal" apply="com.fajarachmad.tutorial.composer.UserSearchComposer">
+<grid>
+	<columns >
+		<column width="30%" />
+		<column width="1%" />
+		<column />
+	</columns>
+	<rows>
+		<row>
+			<label value="Username" />
+			<label value=":"/>
+			<textbox id="txtUsername" />
+		</row>
+		<row>
+			<label />
+			<label />
+			<hbox>
+				<button label="Search" id="btnSearch" />
+				<space />
+				<button label="New" id="btnNew" />
+			</hbox>
+		</row>
+	</rows>
+</grid>
+<space />
+<groupbox>
+	<caption label="Search Result" />
+	<listbox id="lstResult">
+		<listhead>
+			<listheader>Username</listheader>
+			<listheader width="15%">Active</listheader>
+			<listheader width="15%">Action</listheader>
+		</listhead>
+		<template name="model">
+			<listitem>
+				<listcell label="${each.username }"/>
+				<listcell label="${each.active }"/>
+				<listcell>
+					<a label="detail" forward="onDetail(${each})" /> |
+					<a label="delete" forward="onDelete(${each})" />
+				</listcell>
+			</listitem>
+		</template>
+	</listbox>
+</groupbox>
+</window>
+</zk>

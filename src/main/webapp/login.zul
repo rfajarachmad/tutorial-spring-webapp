@@ -1,0 +1,27 @@
+<?page id="testZul" title="CUSTOM ZK + SPRING SECURITY LOGIN"?>
+<window id="loginwin" title="Login" border="normal" width="500px" style="margin-top:230px;margin-left:400px;">
+    <!-- this form-login-page form is also used as the
+         form-error-page to ask for a login again. -->
+    <html style="color:red" if="${not empty param.login_error}">
+      <![CDATA[
+        Your login attempt was not successful, try again.<br/><br/>
+        Reason: ${SPRING_SECURITY_LAST_EXCEPTION.message}
+       ]]>
+    </html>
+ 
+    <h:form id="f" name="f" action="j_spring_security_check" method="POST"
+    xmlns:h="native">
+        <grid>
+            <rows>
+                <row>User: <textbox id="u" name="j_username"/></row>
+                <row>Password: <textbox id="p" type="password" name="j_password"/></row>
+                <row><checkbox id="r" name="j_spring_security_remember_me"/>Remember me</row>
+                <row spans="2">
+                    <hbox>
+                        <h:input type="submit" value="Login"/>
+                    </hbox>
+                </row>
+            </rows>
+        </grid>
+    </h:form>
+</window>

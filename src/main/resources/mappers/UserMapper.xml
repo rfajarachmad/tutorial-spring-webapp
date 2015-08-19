@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fajarachmad.tutorial.mapper.UserMapper">
+	
+	<resultMap type="com.fajarachmad.tutorial.domain.User" id="userResultMap">
+		<id property="id" column="id" javaType="int" jdbcType="NUMERIC" />
+		<result property="username" column="USER_NAME" javaType="String" jdbcType="VARCHAR" />
+		<result property="password" column="PASSWORD" javaType="String" jdbcType="VARCHAR" />
+		<result property="active" column="FLAG_ACTIVE" javaType="boolean" jdbcType="NUMERIC"/>
+	</resultMap>
+	
+    <select id="findByExample" parameterType="com.fajarachmad.tutorial.domain.User" resultMap="userResultMap">
+    	SELECT id, USER_NAME, PASSWORD, FLAG_ACTIVE FROM users 
+    	<where>
+			<if test="username != null">
+				upper(USER_NAME) like '%'||UPPER(#{username})||'%'
+			</if>    	
+    	</where>
+    </select>
+    
+    <insert id="insert" parameterType="com.fajarachmad.tutorial.domain.User">
+    	INSERT INTO USERS(ID, USER_NAME, PASSWORD, FLAG_ACTIVE)
+    	VALUES(
+    		#{id},
+    		#{username},
+    		#{password},
+    		#{active}
+    	)
+    </insert>
+	
+	<update id="update" parameterType="com.fajarachmad.tutorial.domain.User">
+		UPDATE USERS 
+		SET 
+			USER_NAME = #{username},
+			PASSWORD = #{password},
+			FLAG_ACTIVE = #{active}
+		WHERE
+			ID = #{id}
+	</update>
+	
+	<delete id="deleteByPrimaryKey" parameterType="int">
+		DELETE FROM USERS WHERE ID = #{id}
+	</delete>
+	
+	<select id="findByUsername" parameterType="String" resultMap="userResultMap">
+		SELECT id, USER_NAME, PASSWORD, FLAG_ACTIVE FROM users where USER_NAME = #{username}
+	</select>
+	
+</mapper>

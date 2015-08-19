@@ -1,0 +1,38 @@
+<?page title="User Search" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="User Detail" border="normal" apply="com.fajarachmad.tutorial.composer.UserDetailComposer">
+<grid>
+	<columns >
+		<column width="30%" />
+		<column width="1%" />
+		<column />
+	</columns>
+	<rows>
+		<row>
+			<label value="Username" />
+			<label value=":"/>
+			<textbox id="txtUsername" />
+		</row>
+		<row>
+			<label value="Password" />
+			<label value=":"/>
+			<textbox type="password" id="txtPassword" />
+		</row>
+		<row>
+			<label value="Active" />
+			<label value=":"/>
+			<checkbox id="chkActive" />
+		</row>
+		<row>
+			<label />
+			<label />
+			<hbox>
+				<button label="Save" id="btnSave" />
+				<space />
+				<button label="Back" id="btnBack" />
+			</hbox>
+		</row>
+	</rows>
+</grid>
+</window>
+</zk>

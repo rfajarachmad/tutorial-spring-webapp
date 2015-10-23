@@ -17,10 +17,13 @@
 		<mybatis.version>3.2.2</mybatis.version>
 		<junit.version>3.8.1</junit.version>
 		<c3p0.version>0.9.1.2</c3p0.version>
+		<log4j.version>1.2.17</log4j.version>
+		
 		<app.jdbc.driverClassName>org.h2.Driver</app.jdbc.driverClassName>
 		<app.jdbc.url>jdbc:h2:~/test</app.jdbc.url>
 		<app.jdbc.username>sa</app.jdbc.username>
 		<app.jdbc.password></app.jdbc.password>
+		
 	</properties>
 
 	<dependencies>
@@ -111,6 +114,14 @@
 			<artifactId>c3p0</artifactId>
 			<version>${c3p0.version}</version>
 		</dependency>
+		
+		<!-- Logger  -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+	
 	</dependencies>
 
 

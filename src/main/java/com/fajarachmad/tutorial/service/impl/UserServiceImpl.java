@@ -3,6 +3,7 @@ package com.fajarachmad.tutorial.service.impl;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,8 @@ import com.fajarachmad.tutorial.service.UserService;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
+	
+	final static Logger logger = Logger.getLogger(UserServiceImpl.class);
 	
 	@Autowired
 	private UserMapper userMapper;
@@ -43,6 +46,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User getUserByUsernama(String username) {
+		logger.debug("Getting user by username: "+ username);
 		return userMapper.findByUsername(username);
 	}
 

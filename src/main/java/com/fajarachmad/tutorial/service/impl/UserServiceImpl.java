@@ -5,12 +5,15 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fajarachmad.tutorial.domain.User;
 import com.fajarachmad.tutorial.mapper.UserMapper;
 import com.fajarachmad.tutorial.service.UserService;
 
+
 @Service
+@Transactional
 public class UserServiceImpl implements UserService{
 	
 	@Autowired

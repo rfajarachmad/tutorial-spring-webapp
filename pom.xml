@@ -5,7 +5,7 @@
 	<artifactId>tutorial</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>tutorial Maven Webapp</name>
+	<name>tutorial-spring-webapp</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -118,7 +118,7 @@
 
 	</dependencies>
 	<build>
-		<finalName>tutorial</finalName>
+		<finalName>tutorial-spring-webapp</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

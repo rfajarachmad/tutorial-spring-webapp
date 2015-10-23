@@ -12,34 +12,39 @@
 		<jdk.version>1.6</jdk.version>
 		<zk.version>6.5.2</zk.version>
 		<spring.version>3.2.0.RELEASE</spring.version>
-		<h2.version>1.3.168</h2.version>
+		<h2.version>1.4.190</h2.version>
 		<spring.mybatis.version>1.2.2</spring.mybatis.version>
 		<mybatis.version>3.2.2</mybatis.version>
 		<junit.version>3.8.1</junit.version>
+		<c3p0.version>0.9.1.2</c3p0.version>
+		<app.jdbc.driverClassName>org.h2.Driver</app.jdbc.driverClassName>
+		<app.jdbc.url>jdbc:h2:~/test</app.jdbc.url>
+		<app.jdbc.username>sa</app.jdbc.username>
+		<app.jdbc.password></app.jdbc.password>
 	</properties>
 
 	<dependencies>
-		
-		<!-- ZK Framework  -->
+
+		<!-- ZK Framework -->
 		<dependency>
 			<groupId>org.zkoss.zk</groupId>
 			<artifactId>zk</artifactId>
 			<version>${zk.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.zkoss.zk</groupId>
 			<artifactId>zul</artifactId>
 			<version>${zk.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.zkoss.zk</groupId>
 			<artifactId>zkplus</artifactId>
 			<version>${zk.version}</version>
 		</dependency>
-		
-		<!-- Unit Testing  -->
+
+		<!-- Unit Testing -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -53,27 +58,27 @@
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
-		
+
+
 		<!-- Spring Security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
@@ -86,26 +91,34 @@
 			<artifactId>h2</artifactId>
 			<version>${h2.version}</version>
 		</dependency>
-		
+
 		<!-- Mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 			<version>${spring.mybatis.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>${mybatis.version}</version>
 		</dependency>
-
+		
+		<!-- Datasources/Resources pool -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>${c3p0.version}</version>
+		</dependency>
 	</dependencies>
-	
-	
+
+
 	<build>
 		<finalName>tutorial-spring-webapp</finalName>
 		<plugins>
+			
+			<!-- This plugin is used to compile the sources of project -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -115,6 +128,50 @@
 					<target>${jdk.version}</target>
 				</configuration>
 			</plugin>
+			
+			<!-- This plugin is used to execute SQL statements   -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>sql-maven-plugin</artifactId>
+				<version>1.3</version>
+				
+				<!-- Database driver  -->
+				<dependencies>
+					<dependency>
+						<groupId>com.h2database</groupId>
+						<artifactId>h2</artifactId>
+						<version>${h2.version}</version>
+					</dependency>
+				</dependencies>
+
+				<configuration>
+					<driver>${app.jdbc.driverClassName}</driver>
+					<url>${app.jdbc.url}</url>
+					<username>${app.jdbc.username}</username>
+					<password>${app.jdbc.password}</password>
+					<settingsKey>sensibleKey</settingsKey>
+					<skip>${maven.test.skip}</skip>
+				</configuration>
+				
+				<executions>
+					<execution>
+						<id>create-schema</id>
+						<phase>process-test-resources</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<autocommit>true</autocommit>
+							<srcFiles>
+								<srcFile>${basedir}/src/main/resources/sql/schema.sql</srcFile>
+								<srcFile>${basedir}/src/main/resources/sql/test-data.sql</srcFile>
+							</srcFiles>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- This plugin is used to deploy and running web container  -->
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>

@@ -13,6 +13,7 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zkplus.spring.DelegatingVariableResolver;
 
 import com.fajarachmad.tutorial.domain.User;
+import com.fajarachmad.tutorial.domain.UserExample;
 import com.fajarachmad.tutorial.service.UserService;
 
 @VariableResolver(DelegatingVariableResolver.class)
@@ -31,7 +32,9 @@ public class UserViewModel {
 	@Command
     @NotifyChange("userList")
     public void search(){
-		userList = userServiceImpl.search(new User());
+		UserExample example = new UserExample();
+		example.createCriteria();
+		userList = userServiceImpl.search(example);
     }
 	
 	public List<User> getUserList() {

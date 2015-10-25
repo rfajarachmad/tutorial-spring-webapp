@@ -24,6 +24,7 @@
 		<app.jdbc.username>sa</app.jdbc.username>
 		<app.jdbc.password></app.jdbc.password>
 		
+		<mybatis.generator.overwrite>true</mybatis.generator.overwrite>
 	</properties>
 
 	<dependencies>
@@ -197,6 +198,30 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			
+			<!-- myBatis Generator  -->
+			
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<dependencies>
+						<!-- Local Development -->
+						<dependency>
+							<groupId>com.h2database</groupId>
+							<artifactId>h2</artifactId>
+							<version>${h2.version}</version>
+						</dependency>
+				</dependencies>
+				<!-- <executions>
+					<execution>
+						<id>Generate MyBatis Artifacts</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions> -->
 			</plugin>
 			
 			<!-- This plugin is used to deploy and running web container  -->

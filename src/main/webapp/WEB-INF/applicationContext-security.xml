@@ -21,6 +21,6 @@
 		<authentication-provider ref="customAuthenticationProvider" />
 	</authentication-manager>
 	
-	<beans:bean id="customAuthenticationProvider" class="com.fajarachmad.tutorial.security.MyAuthenticationProvider" />
+	<beans:bean id="customAuthenticationProvider" class="com.fajarachmad.tutorial.security.UserAuthenticationProvider" />
 	
 </beans:beans>

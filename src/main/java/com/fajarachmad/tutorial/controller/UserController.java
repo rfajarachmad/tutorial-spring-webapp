@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fajarachmad.tutorial.domain.User;
+import com.fajarachmad.tutorial.domain.UserExample;
 import com.fajarachmad.tutorial.service.UserService;
 
 @Controller
@@ -28,8 +29,8 @@ public class UserController {
 	
 	@RequestMapping(value = {"/search/{key}"}, method = RequestMethod.GET)
 	public String search(@PathVariable String key, ModelMap model, HttpSession session) {
-		User example = new User();
-		example.setUsername(key);
+		UserExample example = new UserExample();
+		example.createCriteria();
 		List<User> userList = userServiceImpl.search(example);
 		model.addAttribute("userList", userList);
 		return "zul/user/user_search.zul";

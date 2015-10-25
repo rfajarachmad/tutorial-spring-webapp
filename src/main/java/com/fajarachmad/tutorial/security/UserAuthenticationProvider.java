@@ -14,10 +14,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.fajarachmad.tutorial.domain.User;
+import com.fajarachmad.tutorial.domain.UserExample;
 import com.fajarachmad.tutorial.service.UserService;
 
 @Component
-public class MyAuthenticationProvider implements AuthenticationProvider{
+public class UserAuthenticationProvider implements AuthenticationProvider{
 	
 	@Autowired
 	private UserService userServiceImpl;
@@ -28,7 +29,12 @@ public class MyAuthenticationProvider implements AuthenticationProvider{
 		String name = authentication.getName();
 	    String password = authentication.getCredentials().toString();
 		
-	    User user = userServiceImpl.getUserByUsernama(name);
+	    UserExample example = new UserExample();
+	    example.createCriteria().andUserNameEqualTo(name);
+	    
+	    List<User> users = userServiceImpl.search(example);
+	    
+	    User user = users.get(0);
 	    
 	    //Inplement the authentication here
 	    if(user != null){

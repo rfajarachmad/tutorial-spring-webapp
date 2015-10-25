@@ -1,6 +1,9 @@
 <?page title="User Search" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window id="userSearch" title="User Search" border="normal" apply="com.fajarachmad.tutorial.composer.UserSearchComposer">
+<window id="userSearch" title="User Search" border="normal"
+apply="org.zkoss.bind.BindComposer"
+ viewModel="@id('vm') @init('com.fajarachmad.tutorial.viewmodel.UserViewModel')"
+>
 <grid>
 	<columns >
 		<column width="30%" />
@@ -11,13 +14,13 @@
 		<row>
 			<label value="Username" />
 			<label value=":"/>
-			<textbox id="txtUsername" />
+			<textbox id="txtUsername" value="@bind(vm.txtUserName)" />
 		</row>
 		<row>
 			<label />
 			<label />
 			<hbox>
-				<button label="Search" id="btnSearch" />
+				<button label="Search" id="btnSearch" onClick="@command('search')"/>
 				<space />
 				<button label="New" id="btnNew" />
 			</hbox>
@@ -35,8 +38,8 @@
 		</listhead>
 		<template name="model">
 			<listitem>
-				<listcell label="${each.username }"/>
-				<listcell label="${each.active }"/>
+				<listcell label="@bind{each.username }"/>
+				<listcell label="@bind{each.active }"/>
 				<listcell>
 					<a label="detail" forward="onDetail(${each})" /> |
 					<a label="delete" forward="onDelete(${each})" />

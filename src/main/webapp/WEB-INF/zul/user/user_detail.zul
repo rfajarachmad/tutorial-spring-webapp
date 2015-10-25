@@ -1,6 +1,6 @@
 <?page title="User Search" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window title="User Detail" border="normal" apply="com.fajarachmad.tutorial.composer.UserDetailComposer">
+<window title="User Detail" border="normal">
 <grid>
 	<columns >
 		<column width="30%" />

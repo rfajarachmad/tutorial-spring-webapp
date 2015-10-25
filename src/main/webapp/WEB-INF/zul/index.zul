@@ -2,6 +2,8 @@
 <zk>
 <window title="Home" border="normal">
 New Content Here!
-<a href="j_spring_security_logout" > Logout</a>
+<a href="../../j_spring_security_logout" > Logout</a>
+
+<button href="/user/" label="User" />
 </window>
 </zk>

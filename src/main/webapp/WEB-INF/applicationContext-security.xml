@@ -7,11 +7,12 @@
 
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/login.zul" access="permitAll" /> 
-		<intercept-url pattern="/" access="isAuthenticated()" /> 
+		<intercept-url pattern="/*" access="isAuthenticated()" /> 
 		<form-login 
 			login-page="/login.zul" 
 			authentication-failure-url="/login.zul?login_error=1" 
-			default-target-url="/" 
+			default-target-url="/index" 
+			always-use-default-target="true"  
 		/>
 		<logout logout-success-url="/login.zul" />
 	</http>

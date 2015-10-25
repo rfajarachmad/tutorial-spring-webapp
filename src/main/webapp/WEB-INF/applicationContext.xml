@@ -16,13 +16,17 @@
 	
 	<context:property-placeholder location="/WEB-INF/jdbc.properties" />
 	
+	<!-- Activates annotation-based bean configuration -->
+   <!--  <context:annotation-config /> -->
+    
 	<!-- tells Spring to scan the code for injectable beans under the package (and all its subpackages) specifie -->
 	<!-- and wire the components into Spring container. -->
-	<context:component-scan base-package="com.fajarachmad.tutorial.service.impl" />	
-
+	<context:component-scan base-package="com.fajarachmad.tutorial.service.impl" />
+	
 	<!-- Enable annotation style of managing transactions -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
+	<context:component-scan base-package="com.fajarachmad.tutorial.service.impl" />
 	<!-- Declare a transaction manager -->
 	<bean id="transactionManager" 
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 
@@ -53,7 +57,5 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.fajarachmad.tutorial.mapper" />
 	</bean>
-	
-	
 	
 </beans>  

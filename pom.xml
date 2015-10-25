@@ -31,19 +31,22 @@
 		<!-- ZK Framework -->
 		<dependency>
 			<groupId>org.zkoss.zk</groupId>
-			<artifactId>zk</artifactId>
+			<artifactId>zkbind</artifactId>
 			<version>${zk.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.zkoss.zk</groupId>
 			<artifactId>zul</artifactId>
 			<version>${zk.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.zkoss.zk</groupId>
 			<artifactId>zkplus</artifactId>
+			<version>${zk.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.zkoss.zk</groupId>
+			<artifactId>zhtml</artifactId>
 			<version>${zk.version}</version>
 		</dependency>
 
@@ -74,7 +77,13 @@
 			<version>${spring.version}</version>
 		</dependency>
 
-
+		<!-- Spring MVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
 		<!-- Spring Security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -120,6 +129,14 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
+		</dependency>
+		
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
 		</dependency>
 	
 	</dependencies>

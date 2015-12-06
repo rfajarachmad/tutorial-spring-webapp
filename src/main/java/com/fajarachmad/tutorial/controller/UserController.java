@@ -1,7 +1,5 @@
 package com.fajarachmad.tutorial.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +25,17 @@ public class UserController {
 		return "zul/user/user_search.zul";
 	}
 	
-	@RequestMapping(value = {"/search/{key}"}, method = RequestMethod.GET)
-	public String search(@PathVariable String key, ModelMap model, HttpSession session) {
+	@RequestMapping(value = {"/{userId}"}, method = RequestMethod.GET)
+	public String detail(@PathVariable Integer userId, ModelMap model, HttpSession session) {
 		UserExample example = new UserExample();
 		example.createCriteria();
-		List<User> userList = userServiceImpl.search(example);
-		model.addAttribute("userList", userList);
-		return "zul/user/user_search.zul";
+		User user = userServiceImpl.findById(userId);
+		model.addAttribute("selectedUser", user);
+		return "zul/user/user_detail.zul";
+	}
+	
+	@RequestMapping(value = {"new"}, method = RequestMethod.GET)
+	public String showUserDetail() {
+		return "zul/user/user_detail.zul";
 	}
 }

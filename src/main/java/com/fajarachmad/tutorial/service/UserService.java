@@ -12,4 +12,6 @@ public interface UserService {
 	public void delete(User user);
 	
 	public List<User> search(UserExample example);
+	
+	public User findById(Integer id);
 }

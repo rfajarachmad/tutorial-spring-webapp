@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	@Transactional
 	public void save(User user) {
-		if(user.getId() == 0){
+		if(user.getId() == null){
 			Random random = new Random();
 			user.setId(random.nextInt());
 			userMapper.insert(user);
@@ -46,6 +46,12 @@ public class UserServiceImpl implements UserService{
 	public List<User> search(UserExample example) {
 		logger.debug("Getting user by example");
 		return userMapper.selectByExample(example);
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public User findById(Integer id) {
+		return userMapper.selectByPrimaryKey(id);
 	}
 
 }

@@ -7,30 +7,21 @@ apply="org.zkoss.bind.BindComposer"
 <grid>
 	<columns >
 		<column width="30%" />
-		<column width="1%" />
+		<column />
 		<column />
 	</columns>
 	<rows>
 		<row>
-			<label value="Username" />
-			<label value=":"/>
-			<textbox id="txtUsername" value="@bind(vm.txtUserName)" />
-		</row>
-		<row>
-			<label />
-			<label />
-			<hbox>
-				<button label="Search" id="btnSearch" onClick="@command('search')"/>
-				<space />
-				<button label="New" id="btnNew" />
-			</hbox>
+			<button label="New User" onClick="@command('addNew')"/>
+			<button label="Edit User" onClick="@command('detail')"/>
+			<textbox placeholder="Search"  value="@bind(vm.key)" onOK="@command('search')" />
 		</row>
 	</rows>
 </grid>
 <space />
 <groupbox>
 	<caption label="Search Result" />
-	<listbox id="lstResult">
+	<listbox id="lstResult" multiple="true" model="@bind(vm.userList)" selectedItem="@bind(vm.selectedUser)">
 		<listhead>
 			<listheader>Username</listheader>
 			<listheader width="15%">Active</listheader>
@@ -38,12 +29,8 @@ apply="org.zkoss.bind.BindComposer"
 		</listhead>
 		<template name="model">
 			<listitem>
-				<listcell label="@bind{each.username }"/>
-				<listcell label="@bind{each.active }"/>
-				<listcell>
-					<a label="detail" forward="onDetail(${each})" /> |
-					<a label="delete" forward="onDelete(${each})" />
-				</listcell>
+				<listcell label="@load(each.userName)"/>
+				<listcell label="@load(each.active)"/>
 			</listitem>
 		</template>
 	</listbox>

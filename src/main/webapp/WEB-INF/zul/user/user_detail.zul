@@ -1,6 +1,6 @@
 <?page title="User Search" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window title="User Detail" border="normal">
+<window title="User Detail" border="normal" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.fajarachmad.tutorial.viewmodel.UserViewModel')">
 <grid>
 	<columns >
 		<column width="30%" />
@@ -11,23 +11,23 @@
 		<row>
 			<label value="Username" />
 			<label value=":"/>
-			<textbox id="txtUsername" />
+			<textbox value="@bind(vm.userName)" />
 		</row>
 		<row>
 			<label value="Password" />
 			<label value=":"/>
-			<textbox type="password" id="txtPassword" />
+			<textbox type="password" value="@bind(vm.password)" />
 		</row>
 		<row>
 			<label value="Active" />
 			<label value=":"/>
-			<checkbox id="chkActive" />
+			<checkbox value="@bind(vm.active)" />
 		</row>
 		<row>
 			<label />
 			<label />
 			<hbox>
-				<button label="Save" id="btnSave" />
+				<button label="Save" id="btnSave" onClick="@command('save')" />
 				<space />
 				<button label="Back" id="btnBack" />
 			</hbox>
